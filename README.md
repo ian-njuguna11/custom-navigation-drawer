@@ -1,16 +1,18 @@
-# audible_mockapp
+# Audible Mockapp
 
-Building the screens and navigations found in audible using Flutter.
+Audible, building the audio book service using the Flutter framework.
 
-## Getting Started
+## Objective
 
-This project is a starting point for a Flutter application.
+* Collaborate with like-minded, passionate developers
+* Provide a safe space where new developers can come to learn and experienced developers can come to teach
 
-A few resources to get you started if this is your first Flutter project:
+## Design
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+A showcase of the original screens vs. the mockapp screens.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### Navigation Drawer
+
+Original                   |  Mockapp
+:-------------------------:|:-------------------------:
+![](https://github.com/Jensen098/audible-mockapp/blob/update-readme/screenshots/original/navigation-drawer.jpg)  |  ![](https://github.com/Jensen098/audible-mockapp/blob/update-readme/screenshots/mockapp/navigation-drawer.jpg)
