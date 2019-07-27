@@ -19,6 +19,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   /// Default store dropdown menu: Closed
   static IconData storeDropdownIcon = Icons.keyboard_arrow_up;
+  static double userLvlBarWidth = 0.0;
+  static String userLvlStatus = '';
+  static String userLvlNumHours = '';
   static final List<String> storeDropdownItems = [
     "Browse",
     "Wish List",
@@ -42,23 +45,59 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     var subheadStyle =
         appTextTheme.copyWith().subhead.copyWith(color: Colors.grey);
 
-    Widget drawerHeader = Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            'Hi, User',
-            style: headerStyle,
-          ),
-          SizedBox(
-            height: 4.0,
-          ),
-          Text(
-            'user007@bond.com',
-            style: subheadStyle,
-          ),
-        ],
+    Widget drawerHeader = Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(24.0, 8.0, 12.0, 4.0),
+              child: CircleAvatar(
+                radius: 32.0,
+                backgroundColor: appTheme.secondaryHeaderColor,
+                child: Text(
+                  'NJ',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Nick Jensen'),
+                Text(
+                  'nickjensen098@gmail.com',
+                  style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
+                ),
+                SizedBox(height: 8.0),
+                Stack(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(5.0)),
+                      child: AnimatedContainer(
+                        width: userLvlBarWidth,
+                        height: 15.0,
+                        color: Colors.blue[800],
+                        duration: Duration(milliseconds: 1200),
+                      ),
+                    ),
+                    Container(
+                      width: 150.0,
+                      height: 15.0,
+                      child: Center(
+                        child: Text(userLvlStatus),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  userLvlNumHours,
+                  style: TextStyle(fontSize: 10.0),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
 
@@ -137,6 +176,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             padding: EdgeInsets.all(0.0),
             onPressed: () {
               setState(() {
+                userLvlBarWidth = 100.0;
+                userLvlStatus = 'Novice';
+                userLvlNumHours = '23 hrs to go';
                 /// Toggle the state of the store dropdown menu items
                 if (storeDropdownIcon == Icons.keyboard_arrow_up) {
                   storeDropdownIcon = Icons.keyboard_arrow_down;
@@ -178,7 +220,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 12.0, right: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 12.0, right: 4.0),
                             child: Icon(
                               storeDropdownIcon,
                               color: Colors.grey,
