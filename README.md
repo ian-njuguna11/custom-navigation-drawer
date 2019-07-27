@@ -15,4 +15,4 @@ A showcase of the original screens vs. the mockapp screens.
 
 Original                   |  Mockapp
 :-------------------------:|:-------------------------:
-![](https://github.com/Jensen098/audible-mockapp/blob/update-readme/screenshots/original/navigation-drawer.jpg)  |  ![](https://github.com/Jensen098/audible-mockapp/blob/update-readme/screenshots/mockapp/navigation-drawer.jpg)
+![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/original/navigation-drawer.jpg) | ![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/mockapp/navigation-drawer.jpg)
