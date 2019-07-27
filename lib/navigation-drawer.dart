@@ -48,14 +48,14 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Hi, User',
+            'Hi, Nick',
             style: headerStyle,
           ),
           SizedBox(
             height: 4.0,
           ),
           Text(
-            'user007@bond.com',
+            'nickjensen098@gmail.com',
             style: subheadStyle,
           ),
         ],

@@ -1,6 +1,6 @@
 # Audible Mockapp
 
-Audible, building the audio book service using the Flutter framework.
+Audible, building the audio book service app using the Flutter framework.
 
 ## Objective
 
