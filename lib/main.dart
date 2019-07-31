@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home.dart';
-import 'screens/library.dart';
-import 'screens/news.dart';
-import 'screens/stats.dart';
-import 'screens/recommended.dart';
-import 'screens/store.dart';
-import 'screens/settings.dart';
-import 'screens/help-support.dart';
+import 'package:audible_mockapp/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,18 +20,9 @@ class MyApp extends StatelessWidget {
         textSelectionColor: Colors.white,
       ),
       title: 'Audible MockApp',
-      home: HomeScreen(),
-      // Start with building only 4 screens (actual no. of screens: 7)
-      routes: <String, WidgetBuilder>{
-        LibraryScreen.routeName: (BuildContext context) => LibraryScreen(),
-        NewsScreen.routeName: (BuildContext context) => NewsScreen(),
-        StatsScreen.routeName: (BuildContext context) => StatsScreen(),
-        RecommendedScreen.routeName: (BuildContext context) =>
-            RecommendedScreen(),
-        StoreScreen.routeName: (BuildContext context) => StoreScreen(),
-        SettingsScreen.routeName: (BuildContext context) => SettingsScreen(),
-        HelpSupportScreen.routeName: (BuildContext context) => HelpSupportScreen(),
-      },
+      home: HomeScreen(
+        screenName: 'Home',
+      ),
     );
   }
 }

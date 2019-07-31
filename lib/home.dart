@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../navigation-drawer.dart';
+import 'navigation-drawer.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({this.screenName});
+  final String screenName;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class HomeScreen extends StatelessWidget {
         color: theme.primaryColor,
         child: Center(
           child: Text(
-            'Home',
+            screenName + ' \nPlaceholder Screen',
+            textAlign: TextAlign.center,
           ),
         ),
       ),
