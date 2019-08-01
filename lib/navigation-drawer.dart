@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/library.dart';
-import 'screens/news.dart';
-import 'screens/stats.dart';
-import 'screens/recommended.dart';
-import 'screens/store.dart';
-import 'screens/settings.dart';
-import 'screens/help-support.dart';
+import 'package:audible_mockapp/home.dart';
 
 double _userLvlBarWidth = 0.0;
 String _userLvlStatus = '';
@@ -29,8 +23,8 @@ class NavigationDrawer extends StatefulWidget {
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  /// Default selected item: Home ("/")
-  static String selectedItem = "/";
+  /// Default selected item: Home
+  static String selectedItem = 'Home';
   static int totStoreDropdownItems = 0;
 
   /// Default store dropdown menu: Closed
@@ -113,13 +107,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       ),
     );
 
-    Widget drawerItem(IconData icon, String title, String routeName) {
+    Widget drawerItem(IconData icon, String title) {
       ThemeData itemTheme;
       double itemHeight = 48.0;
       Color iconColor;
 
       /// Update the status indicator of the selected drawer item
-      selectedItem == routeName
+      selectedItem == title
           ? itemTheme = appTheme
           : itemTheme = ThemeData(
               primaryColor: appTheme.primaryColor,
@@ -135,9 +129,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       /// Highlight the currently selected drawerItem icon white,
       /// unless it is the home icon which should be highlighted orange,
       /// all other unselected drawerItem icons must be grey
-      if (selectedItem == routeName && selectedItem == "/") {
+      if (selectedItem == title && selectedItem == "Home") {
         iconColor = appTheme.accentColor;
-      } else if (selectedItem == routeName) {
+      } else if (selectedItem == title) {
         iconColor = appTheme.textSelectionColor;
       } else {
         iconColor = Colors.grey[700];
@@ -155,9 +149,17 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         padding: EdgeInsets.all(0.0), //remove default padding from FlatButton
         onPressed: () {
           setState(() {
-            selectedItem = routeName;
+            selectedItem = title;
+            // Close the NavigationDrawer
             Navigator.of(context).pop();
-            Navigator.of(context).pushNamed(routeName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                      screenName: title,
+                    ),
+              ),
+            );
           });
         },
         child: Container(
@@ -248,18 +250,36 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               controller: controller,
               itemCount: totStoreDropdownItems,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: itemHeight,
+                return FlatButton(
                   color: itemTheme.primaryColor,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(width: 62.0),
-                      Text(
-                        storeDropdownItems[index],
-                        style: itemTextStyle,
-                      )
-                    ],
+                  onPressed: () {
+                    setState(() {
+                      selectedItem = storeDropdownItems[index];
+                      // Release the NavigationDrawer
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(
+                                screenName: storeDropdownItems[index],
+                              ),
+                        ),
+                      );
+                    });
+                  },
+                  child: Container(
+                    height: itemHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        itemStatusIndicator,
+                        SizedBox(width: 58.0),
+                        Text(
+                          storeDropdownItems[index],
+                          style: itemTextStyle,
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
@@ -279,16 +299,16 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     /// Layout the custom navigation drawer
     var drawerItemWidgets = [
       drawerHeader,
-      drawerItem(Icons.home, "Home", "/"),
-      drawerItem(Icons.library_books, "Library", LibraryScreen.routeName),
-      drawerItem(Icons.add_to_queue, "News", NewsScreen.routeName),
-      drawerItem(Icons.score, "Stats", StatsScreen.routeName),
+      drawerItem(Icons.home, 'Home'),
+      drawerItem(Icons.library_books, 'Library'),
+      drawerItem(Icons.add_to_queue, 'News'),
+      drawerItem(Icons.score, 'Stats'),
       Divider(color: appTheme.textSelectionColor),
-      drawerItem(Icons.thumb_up, "Recommended", RecommendedScreen.routeName),
-      drawerItem(Icons.shopping_cart, "Store", StoreScreen.routeName),
+      drawerItem(Icons.thumb_up, 'Recommended'),
+      drawerItem(Icons.shopping_cart, 'Store'),
       Divider(color: appTheme.textSelectionColor),
-      drawerItem(Icons.settings, "Settings", SettingsScreen.routeName),
-      drawerItem(Icons.help, "Help & Support", HelpSupportScreen.routeName),
+      drawerItem(Icons.settings, 'Settings'),
+      drawerItem(Icons.help, 'Help & Support'),
     ];
 
     ListView listView = ListView(
