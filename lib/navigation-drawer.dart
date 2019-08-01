@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:audible_mockapp/home.dart';
 
+double _userLvlBarWidth = 0.0;
+String _userLvlStatus = '';
+String _userLvlNumHours = '';
+
 class NavigationDrawer extends StatefulWidget {
+
+  // Declare setters
+  void userLvlBarWidth(double width){
+    _userLvlBarWidth = width;
+  }
+  void userLvlStatus(String status){
+    _userLvlStatus = status;
+  }
+  void userLvlNumHours(String numHrs){
+    _userLvlNumHours = numHrs;
+  }
+
   @override
   _NavigationDrawerState createState() => _NavigationDrawerState();
 }
@@ -13,6 +29,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   /// Default store dropdown menu: Closed
   static IconData storeDropdownIcon = Icons.keyboard_arrow_up;
+//  static double _userLvlBarWidth = 0.0;
+//  static String _userLvlStatus = '';
+//  static String _userLvlNumHours = '';
   static final List<String> storeDropdownItems = [
     "Browse",
     "Wish List",
@@ -31,28 +50,60 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   Drawer customNavigationDrawer(BuildContext context) {
     var appTheme = Theme.of(context);
     var appTextTheme = appTheme.textTheme;
-    var headerStyle =
-        appTextTheme.copyWith().title.copyWith(color: Colors.white);
-    var subheadStyle =
-        appTextTheme.copyWith().subhead.copyWith(color: Colors.grey);
 
-    Widget drawerHeader = Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            'Hi, Nick',
-            style: headerStyle,
-          ),
-          SizedBox(
-            height: 4.0,
-          ),
-          Text(
-            'nickjensen098@gmail.com',
-            style: subheadStyle,
-          ),
-        ],
+    Widget drawerHeader = Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(24.0, 24.0, 12.0, 24.0),
+              child: CircleAvatar(
+                radius: 32.0,
+                backgroundColor: appTheme.secondaryHeaderColor,
+                child: Text(
+                  'NJ',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Nick Jensen', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(
+                  'nickjensen098@gmail.com',
+                  style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
+                ),
+                SizedBox(height: 8.0),
+                Stack(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(5.0)),
+                      child: AnimatedContainer(
+                        width: _userLvlBarWidth,
+                        height: 15.0,
+                        color: Colors.blue[800],
+                        duration: Duration(seconds: 10),
+                      ),
+                    ),
+                    Container(
+                      width: 150.0,
+                      height: 15.0,
+                      child: Center(
+                        child: Text(_userLvlStatus),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  _userLvlNumHours,
+                  style: TextStyle(fontSize: 10.0),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
 
