@@ -23,9 +23,6 @@ class HomeScreen extends StatelessWidget {
                 icon: Icon(Icons.menu),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
-                  drawer.userLvlBarWidth(100.0);
-                  drawer.userLvlStatus('Novice');
-                  drawer.userLvlNumHours('23 hrs to go');
                 },
               ),
         ),
