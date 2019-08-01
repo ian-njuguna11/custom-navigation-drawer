@@ -1,6 +1,6 @@
-# Audible Mockapp
+# Custom Navigation Drawer
 
-Audible, building the audio book service app using the Flutter framework.
+Building a custom navigation drawer widget using the Flutter framework.
 
 ## Objective
 
@@ -9,10 +9,8 @@ Audible, building the audio book service app using the Flutter framework.
 
 ## Design
 
-A showcase of the original screens vs. the mockapp screens.
+Showcasing the final design.
 
-### Navigation Drawer
-
-Original                   |  Mockapp
+Screenhot #1               |  Screenhot #2
 :-------------------------:|:-------------------------:
-![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/original/navigation-drawer.jpg) | ![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/mockapp/navigation-drawer.jpg)
+![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/custom-navigation-drawer-1.jpg) | ![](https://github.com/Jensen098/audible-mockapp/blob/master/screenshots/custom-navigation-drawer-2.jpg)
